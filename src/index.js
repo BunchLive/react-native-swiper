@@ -194,7 +194,7 @@ export default class extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (!nextProps.autoplay && this.autoplayTimer) clearTimeout(this.autoplayTimer)
-    this.setState(this.initState(nextProps, this.props.index !== nextProps.index))
+    //this.setState(this.initState(nextProps, this.props.index !== nextProps.index))
   }
 
   componentDidMount () {
@@ -330,6 +330,14 @@ export default class extends Component {
 
       this.scrollBy(this.props.autoplayDirection ? 1 : -1)
     }, this.props.autoplayTimeout * 1000)
+  }
+
+  /**
+   * onScroll event
+   * @param {object} e native event
+   */
+  onScroll = e => {
+    this.props.onScroll && this.props.onScroll(e)
   }
 
   /**
@@ -627,6 +635,8 @@ export default class extends Component {
           {...this.scrollViewPropOverrides()}
           contentContainerStyle={[styles.wrapperIOS, this.props.style]}
           contentOffset={this.state.offset}
+          onScroll={this.onScroll}
+          scrollEventThrottle={5}
           onScrollBeginDrag={this.onScrollBegin}
           onMomentumScrollEnd={this.onScrollEnd}
           onScrollEndDrag={this.onScrollEndDrag}
