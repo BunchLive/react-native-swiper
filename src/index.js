@@ -91,7 +91,8 @@ const styles = {
 
   buttonText: {
     fontSize: 50,
-    color: '#007aff'
+    color: '#007aff',
+    fontFamily: 'Arial'
   }
 }
 
@@ -143,6 +144,7 @@ export default class extends Component {
     /**
      * Called when the index has changed because the user swiped.
      */
+    onScroll: PropTypes.func,
     onIndexChanged: PropTypes.func
   }
 
@@ -268,6 +270,10 @@ export default class extends Component {
     return Object.assign({}, this.state, this.internals)
   }
 
+  scrollTo = (x) => {
+    this.scrollView.scrollTo({x, animated:true})
+  }
+
   onLayout = (event) => {
     const { width, height } = event.nativeEvent.layout
     const offset = this.internals.offset = {}
@@ -332,7 +338,7 @@ export default class extends Component {
     }, this.props.autoplayTimeout * 1000)
   }
 
-  /**
+/**
    * onScroll event
    * @param {object} e native event
    */
