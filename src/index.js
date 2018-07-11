@@ -144,7 +144,6 @@ export default class extends Component {
     /**
      * Called when the index has changed because the user swiped.
      */
-    onScroll: PropTypes.func,
     onIndexChanged: PropTypes.func
   }
 
@@ -338,13 +337,14 @@ export default class extends Component {
     }, this.props.autoplayTimeout * 1000)
   }
 
-/**
-   * onScroll event
+  /**
+   * onScroll event (NOT USING ANYMORE)
    * @param {object} e native event
-   */
+   *
   onScroll = e => {
     this.props.onScroll && this.props.onScroll(e)
   }
+  */
 
   /**
    * Scroll begin handle
@@ -641,7 +641,6 @@ export default class extends Component {
           {...this.scrollViewPropOverrides()}
           contentContainerStyle={[styles.wrapperIOS, this.props.style]}
           contentOffset={this.state.offset}
-          onScroll={this.onScroll}
           onScrollBeginDrag={this.onScrollBegin}
           onMomentumScrollEnd={this.onScrollEnd}
           onScrollEndDrag={this.onScrollEndDrag}
